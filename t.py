@@ -1,4 +1,11 @@
 import numpy as np
+import PyQt5
+
+def function():
+    pass
+
+def fun2():
+    pass 
 
 x = np.array([[4,6,1,2],
      [5, np.inf, 0, 0]])
