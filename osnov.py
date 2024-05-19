@@ -3,7 +3,22 @@ import sys
 from alg1 import first_algos
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QPushButton, 
                              QToolTip, QMessageBox, QLabel)
+from alg2 import Second
+from fact import First
 
+def raschot(dct):
+    fst = First(dct['r_s'], dct['p_s'], dct['d_s'])
+    scd = Second(dct['r_s'], dct['p_s'], dct['d_s'])
+    s = ''
+    if dct['algos'][0]:
+        scd.algos2()
+        s+='Результат алгоритма максимального времени смещения: ' + f'с прерыванием: {scd.best}  {scd.ans1}   и без прерывания{scd.best2}  {scd.ans2}' + '\n'
+    if dct['algos'][2]:
+        rez = fst.first_algos()
+        s+='Результат алгоритма полного перебора:' + f'{fst.best}  {rez}' + '\n'
+    if dct['algos'][1]:
+        pass
+    return s
 
 class Ui_MainWindow1(QMainWindow):
     def setupUi(self, MainWindow):
@@ -57,13 +72,15 @@ class Ui_MainWindow2(QMainWindow):
         data['w_s'] = list(map( int, self.textEdit_5.toPlainText().split()))
         data['func'] = self.comboBox.currentText()
         data['algos'] = [self.checkBox.isChecked(), self.checkBox_2.isChecked(), self.checkBox_3.isChecked()]
+        return data
 
     def is_pushed2(self):
+        s = raschot(self.get_data())
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_MainWindow1()
         self.ui.setupUi(self.window)
         self.window.show()
-        self.ui.textBrowser.setText("Результат:")
+        self.ui.textBrowser.setText(s)
 
         
     def setupUi(self, MainWindow):
@@ -249,6 +266,7 @@ class Ui_MainWindow(QMainWindow):
         data['w_s'] = list(map( int, self.textEdit_5.toPlainText().split()))
         data['func'] = self.comboBox.currentText()
         data['algos'] = [self.checkBox.isChecked(), self.checkBox_2.isChecked(), self.checkBox_3.isChecked()]
+        return data
 
 
     def is_pushed1(self):
