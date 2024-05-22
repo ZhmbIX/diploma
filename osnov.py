@@ -5,10 +5,11 @@ from PyQt5.QtWidgets import (QApplication, QMainWindow, QPushButton,
                              QToolTip, QMessageBox, QLabel)
 from alg2 import Second
 from fact import First
-
+from third import Third
 def raschot(dct):
     fst = First(dct['r_s'], dct['p_s'], dct['d_s'])
     scd = Second(dct['r_s'], dct['p_s'], dct['d_s'])
+    thd = Third(dct['r_s'], dct['p_s'], dct['d_s'],dct['w_s'])
     s = ''
     if dct['algos'][0]:
         scd.algos2()
@@ -17,7 +18,8 @@ def raschot(dct):
         rez = fst.first_algos()
         s+='Результат алгоритма полного перебора:' + f'{fst.best}  {rez}' + '\n'
     if dct['algos'][1]:
-        pass
+        thd.draw()
+        s+='Результат третьего алгоритма: ' + f"{thd.best[0]}    {thd.ans}"
     return s
 
 class Ui_MainWindow1(QMainWindow):
